@@ -110,30 +110,55 @@ z = 50;
         An important concept to grasp in JavaScript is that of <em>dynamic typing</em>. Unlike its namesake Java,
         JavaScript usually does not concern itself with the type of its variables until the last possible moment. This
         last moment ends up being during runtime. The advantage is that the JavaScript programmer can just declare variables
-        with the keyword <strong>var</strong> and doesn't generally have to think about types. As long as the operations on
+        with the keyword <strong>var</strong> without worrying about defining the exact type. As long as the operations on
         the types are allowed, the JavaScript engine will happily execute your code.
+        </p>
+
+        <p>
+        Variables in JavaScript are declared with the <strong>var</strong> keyword, regardless of type.
         </p>
 
         <div class="example code">
 <strong>JavaScript</strong>
 
-function add (x1, x2){
-    return x1 + x2;
-}
-
-add(1, 2);                // allowed, returns 3
-add("goal", "keeper");    // allowed, returns "goalkeeper"
-add(1, "keeper");         // allowed, returns "1keeper"
+var x;
+var y = 5;
+var z = "abc";
         </div>
-        <p class="caption">This behavior is bizzare to someone used to static typing. The number being added to the string will 
-        make more sense when we examine typing more in-depth.</p>
 
         <p>
-        In the example above, JavaScript gladly adds whatever it can in our function. No types are declared (and they can't be!),
-        which leads to some strange behavior if you are used to statically typed languages!
+        Object types are declared the same way:
+        </p>
+
+        <div class="example code">
+<strong>JavaScript</strong>
+
+var address = {
+    number: 1234,
+    street: 'Main',
+    city: 'New York City'
+};
+        </div>
+
+        <p>
+        And even functions:
+        </p>
+
+        <div class="example code">
+<strong>JavaScript</strong>
+
+var add = function(x, y){
+    return x + y;
+};
+        </div>
+
+        <p>
+        All functions are objects in JavaScript, which is why that works.
         </p>
 
         <aside>
+            <h3>Side note</h3>
+
             <p>
             Those fluent in C#
             might be thinking they have nothing to worry about since the C# language has the <strong>var</strong> keyword, but
@@ -154,6 +179,25 @@ var y;       // not allowed in C#, no type can be inferred at compile time
         <p>
         The primary pitfall with dynamic typing is getting your types mixed up. Because types are not checked, you can do
         things like try to get the length property of a Number type or call the string uppercase function on a Boolean type.
+        </p>
+
+        <div class="example code">
+<strong>JavaScript</strong>
+
+function add (x1, x2){
+    return x1 + x2;
+}
+
+add(1, 2);                // allowed, returns 3
+add("goal", "keeper");    // allowed, returns "goalkeeper"
+add(1, "keeper");         // allowed, returns "1keeper"
+        </div>
+        <p class="caption">This behavior is bizzare to someone used to static typing. The number being added to the string will 
+        make more sense when we examine typing more in-depth.</p>
+
+        <p>
+        In the example above, JavaScript gladly adds whatever it can in our function. No types are declared (and they can't be!),
+        which leads to some strange behavior if you are used to statically typed languages!
         </p>
 
         <div class="example code">
@@ -312,6 +356,8 @@ public class Widget {
         </p>
 
         <div class="example code">
+<strong>JavaScript</strong>
+
 var x = 5;                     // global scope
 
 var CoolThing = function(){    // global scope
@@ -348,6 +394,8 @@ window                          Object
         </p>
 
         <div class="example code">
+<strong>JavaScript</strong>
+
 var a;         // scoped to global object
 
 function(){
@@ -364,6 +412,8 @@ function(){
         </p>
 
         <div class="example code">
+<strong>JavaScript</strong>
+
 var Pie = function(){
     x = 2;
 };
