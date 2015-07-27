@@ -5,8 +5,10 @@
 </head>
 
 <body>
+    <h1>Javascript for Java/C# Developers</h1>
+
     <section id="introduction">
-        <h1>Introduction</h1>
+        <h2>Introduction</h2>
 
         <p>
             This is a short introduction to Javascript for people that are already well-versed
@@ -22,7 +24,7 @@
             view Javascript as a full language in its own right, instead of as a tool to manipulate web pages.
         </p>
 
-        <h2>What Javascript is</h2>
+        <h3>What Javascript is</h3>
 
         <p>
             Javascript is a dynamically typed scripting language that primarily powers the web, 
@@ -39,23 +41,65 @@
         <ul>
             <li>Javascript has first-class functions (functions can be passed as variables).</li>
             <li>Javascript functions can be anonymous (they may have no name).</li>
-            <li>Javascript functions can be invoked immediately.<li>
+            <li>Javascript functions can be invoked immediately.</li>
             <li>Javascript only has 64-bit floating points for numbers (no integers).</li>
             <li>Javascript has closures (a function plus its execution environment that can be passed around).</li>
+            <li>Javascript is dynamically typed.</li>
+            <li>Javascript is duck typed (two objects with the same property name, but different logic or types, are treated similarly).</li>
+            <li>Javascript has automatic semicolon insertion.</li>
         </ul>
 
-        <h2>What Javascript is not</h2>
+        <h3>What Javascript is not</h3>
 
         <ul>
             <li>Javascript is not a class-based language (it uses prototypes instead).</li>
             <li>Javascript is not related to the <i>Java</i> language (the name is due to marketing).</li>
             <li>Javascript is not compiled (it is interpreted).</li>
             <li>Javascript is not purely functional (but has functional features).</li>
+            <li>Javascript is not typed (no checking of data types).</li>
         </ul>
 
         <p>
             Hopefully these differences can help convince you to take the language seriously.
         </p>
+    </section>
+
+    <section id="variable-declaration">
+        <h2>Variable declaration</h2>
+
+        <p>Quick look</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Java</th>
+                    <th>C#</th>
+                    <th>Javascript</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <pre>
+int productCount;
+String name = "Taylor";
+                        </pre>
+                    </td>
+                    <td>
+                        <pre>
+int productCount;
+string name = "Taylor";
+                        </pre>
+                    </td>
+                    <td>
+                        <pre>
+var productCount;
+var name = 'Taylor';
+                        </pre>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
     </section>
 </body>
 </html>
