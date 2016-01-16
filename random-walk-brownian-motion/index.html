@@ -1,0 +1,40 @@
+<!doctype HTML>
+
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Random walk - Brownian motion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style type="text/css">
+        canvas { border: 1px solid #333; }
+    </style>
+</head>
+
+<body onload="initialize();">
+    <h2>Random walk - Brownian motion</h2>
+
+    <div>
+        <button onclick="initialize();">Generate new chart</button>
+    </div>
+
+    <div>
+        <label for="granularity">Granularity of data points: </label>
+        <select id="granularity" onchange="draw();">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="8">8</option>
+            <option value="16">16</option>
+            <option value="32">32</option>
+            <option value="64" selected>64</option>
+            <option value="128">128</option>
+        </select>
+    </div>
+
+    <canvas id="chart" width="550" height="250"></canvas>
+
+    <script src="index.js"></script>
+</body>
+</html>
+

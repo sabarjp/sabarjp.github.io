@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>WebGL</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #000;
+      font-family: sans-serif;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    #ui {
+      position: absolute;
+      left: 5px;
+      top: 5px;
+    }
+
+    #footer {
+      position: fixed;
+      bottom: 5px;
+      left: 5px;
+      color: #fff;
+    }
+
+    a {
+      color: #fff;
+    }
+
+    input {
+      background-color: #000;
+      border: 1px solid #ddd;
+      color: #ddd;
+    }
+  </style>
+
+  <script src="js/webgl-utils.js"></script>
+</head>
+
+<body>
+  <div id="ui">
+    <input type="button" id="reset" value="reset"/>
+  </div>
+  <canvas id="canvas"></canvas>
+  <div id="footer">
+    <a href="https://en.wikipedia.org/wiki/Mandelbrot_set">mandlebrot</a>
+  </div>
+
+  <script id="2d-vertex-shader" type="x-shader/x-vertex">
+    precision highp float;
+
+    attribute vec2 a_position;
+
+    uniform vec2 u_resolution;
+    uniform mat3 u_matrix;
+
+    varying vec2 v_position;
+
+    void main() {
+      // convert from pixels to clip space
+      vec2 clipSpace = ((a_position / u_resolution) * 2.0) - 1.0;
+
+      gl_Position = vec4((u_matrix * vec3(clipSpace, 1)).xy, 0, 1);
+
+      v_position = clipSpace;
+    }
+  </script>
+
+  <script id="2d-fragment-shader" type="x-shader/x-fragment">
+    precision highp float;
+
+    varying vec2 v_position;
+
+    const int MAX_ITERATIONS = 300;
+
+    void main() {
+      float c_r = (v_position[0] * 1.5) - 0.5;
+      float c_i = v_position[1];
+
+      float z_r = 0.0;
+      float z_i = 0.0;
+      float z_r_temp;
+
+      int iteration;
+
+      for (int i=0; i < MAX_ITERATIONS; i++) {
+        iteration = i;
+
+        z_r_temp = (z_r * z_r) - (z_i * z_i) + c_r;
+
+        z_i = (2.0 * z_r * z_i) + c_i;
+        z_r = z_r_temp;
+
+        if ((z_r * z_r) + (z_i * z_i) >= 4.0) {
+          break;
+        }
+      }
+
+      if (iteration == MAX_ITERATIONS - 1) {
+        gl_FragColor = vec4(0, 0, 0, 1);
+      } else {
+        float i_color = float(iteration) / float(MAX_ITERATIONS);
+        gl_FragColor = vec4(i_color, i_color, i_color, 1);
+      }
+    }
+  </script>
+
+  <script src="js/draw.js"></script>
+</body>
+
+</html>
